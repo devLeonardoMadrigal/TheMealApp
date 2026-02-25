@@ -68,4 +68,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.9.1")
     // Coil for images
     implementation("io.coil-kt:coil-compose:2.6.0")
+
+    // Koin for Android and Compose
+    implementation("io.insert-koin:koin-androidx-compose:4.0.0")
 }

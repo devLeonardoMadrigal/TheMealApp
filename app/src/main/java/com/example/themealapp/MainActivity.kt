@@ -36,6 +36,7 @@ import com.example.themealapp.remote.RetrofitClient
 import com.example.themealapp.ui.theme.TheMealAppTheme
 import com.example.themealapp.viewmodel.MealViewModel
 import com.example.themealapp.viewmodel.MealsState
+import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +46,7 @@ class MainActivity : ComponentActivity() {
             TheMealAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MealScreen(
-                        viewModel = viewModel(),
+                        viewModel = koinViewModel(),
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -55,7 +56,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MealScreen(viewModel: MealViewModel, modifier: Modifier = Modifier){
+fun MealScreen(viewModel: MealViewModel = koinViewModel(), modifier: Modifier = Modifier){
     //create repo and viewmodel object
 
     val state by viewModel.mealState.observeAsState(MealsState.Loading)
