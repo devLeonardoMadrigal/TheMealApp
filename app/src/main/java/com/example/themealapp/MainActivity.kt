@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -36,7 +37,9 @@ import com.example.themealapp.remote.RetrofitClient
 import com.example.themealapp.ui.theme.TheMealAppTheme
 import com.example.themealapp.viewmodel.MealViewModel
 import com.example.themealapp.viewmodel.MealsState
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +47,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             TheMealAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+
+                    val mealViewModel: MealViewModel = hiltViewModel()
+
                     MealScreen(
-                        viewModel = viewModel(),
+                        viewModel = mealViewModel,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
